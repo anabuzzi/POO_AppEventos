@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import br.senai.sc.eventos.modelo.Evento;
@@ -16,8 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
     private final int RequestCodeNewEvent = 1;
     private final int ResultCodeNewEvent = 10;
+    private final int RequestCodeEventEdition = 2;
+    private final int ResultCodeNewEditedEvent = 11;
+
     private ListView listViewEventos;
     private ArrayAdapter<Evento> adapterEvento;
+    private int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +33,29 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Eventos");
 
         listViewEventos = findViewById(R.id.listView_eventos);
-        ArrayList<Evento> eventos = this.createEvent();
+        ArrayList<Evento> eventos = new ArrayList<Evento>();
         adapterEvento = new ArrayAdapter<Evento>(MainActivity.this,
                 android.R.layout.simple_list_item_1,
                 eventos);
         listViewEventos.setAdapter(adapterEvento);
+
+        defineOnClickListenerView();
+
     }
 
-    private ArrayList<Evento> createEvent(){
-        ArrayList<Evento> eventos = new ArrayList<Evento>();
-//        eventos.add(new Evento("Evento aniversario", LocalDate.of(2020,02,21), "Florianópolis"));
-//        eventos.add(new Evento("Evento ferias",  LocalDate.of(2020,02,21), "Florianópolis"));
-//        eventos.add(new Evento("Evento viagem",  LocalDate.of(2020,02,21), "Florianópolis"));
+// Edição de itens da lista
+    private void defineOnClickListenerView () {
 
+        listViewEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               Evento eventoClick = adapterEvento.getItem(position);
+               Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
+               intent.putExtra("eventoEdicao", eventoClick);
+               startActivityForResult(intent, RequestCodeEventEdition);
+            }
+        });
 
-        return eventos;
     }
 
     public void onClickNewEvent (View v){
@@ -54,7 +69,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == RequestCodeNewEvent && resultCode == ResultCodeNewEvent){
            Evento evento =  (Evento) data.getExtras().getSerializable("novoEvento");
+           evento.setId(++id);
            this.adapterEvento.add(evento);
+        } else if (requestCode == RequestCodeEventEdition && resultCode == ResultCodeNewEditedEvent) {
+            Evento eventoEditado = (Evento) data.getExtras().getSerializable("eventoEditado");
+            for (int i = 0; i< adapterEvento.getCount(); i++){
+                Evento evento = adapterEvento.getItem(i);
+                if (evento.getId() == eventoEditado.getId()) {
+
+                    adapterEvento.remove(evento);
+                    adapterEvento.insert(eventoEditado, i);
+                    break;
+                }
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
