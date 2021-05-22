@@ -26,7 +26,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_evento);
         setTitle("Cadastro de Evento");
-
         carregarEvento();
     }
 
@@ -43,10 +42,10 @@ public class CadastroEventoActivity extends AppCompatActivity {
         LocalDate date = dateText.isEmpty() ? null : LocalDate.parse(dateText);
         String location = editTextLocation.getText().toString();
 
-        if (isEmptyCampo(name) ) {
+        if (isEmptyCampo(name)) {
             editTextNome.requestFocus();
             camposInvalidos = true;
-        } else if (date == null || isEmptyCampo(date.toString())){
+        } else if (date == null || isEmptyCampo(date.toString())) {
             editTextDate.requestFocus();
             camposInvalidos = true;
         } else if (isEmptyCampo(location)) {
@@ -66,7 +65,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
 
     private boolean isEmptyCampo(String valor) {
-
         return (TextUtils.isEmpty(valor) || valor.trim().isEmpty());
     }
 
@@ -88,14 +86,11 @@ public class CadastroEventoActivity extends AppCompatActivity {
             editTextLocation.setText(evento.getLocation());
             edition = true;
             id = evento.getId();
-
         }
-
     }
 
     public void onClickBack(View v) {
         finish();
-
     }
 
     public void onClickSave(View v) {
@@ -125,27 +120,5 @@ public class CadastroEventoActivity extends AppCompatActivity {
         if (!camposInvalidos) {
             finish();
         }
-
     }
-
-    public void onClickDelete(View v) {
-        EditText editTextNome = findViewById(R.id.editText_name);
-        EditText editTextDate = findViewById(R.id.editText_date);
-        EditText editTextLocation = findViewById(R.id.editText_location);
-        String dateText = editTextDate.getText().toString();
-        String name = editTextNome.getText().toString();
-        LocalDate date = dateText.isEmpty() ? null : LocalDate.parse(dateText);
-        String location = editTextLocation.getText().toString();
-
-        Intent intent = getIntent();
-        Evento evento = (Evento) intent.getExtras().get("eventoDeletado");
-
-        if (edition) {
-            intent.putExtra("eventoEdicao", evento);
-            setResult(ResultCodeDeleteEvent, intent);
-        }
-        finish();
-    }
-
-
 }

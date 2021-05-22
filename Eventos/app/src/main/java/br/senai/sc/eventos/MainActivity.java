@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 import br.senai.sc.eventos.modelo.Evento;
 
 public class MainActivity extends AppCompatActivity {
@@ -45,22 +46,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-// Edição de itens da lista
-    private void defineOnClickListenerView () {
+    // Edição de itens da lista
+    private void defineOnClickListenerView() {
 
         listViewEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               Evento eventoClick = adapterEvento.getItem(position);
-               Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
-               intent.putExtra("eventoEdicao", eventoClick);
-               startActivityForResult(intent, RequestCodeEventEdition);
+                Evento eventoClick = adapterEvento.getItem(position);
+                Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
+                intent.putExtra("eventoEdicao", eventoClick);
+                startActivityForResult(intent, RequestCodeEventEdition);
             }
         });
 
+        listViewEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Evento eventoClick = adapterEvento.getItem(position);
+                adapterEvento.remove(eventoClick);
+                Toast.makeText(MainActivity.this, "Evento excluído com sucesso", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
     }
 
-    public void onClickNewEvent (View v){
+    public void onClickNewEvent(View v) {
 
         Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
         startActivityForResult(intent, RequestCodeNewEvent);
@@ -68,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == RequestCodeNewEvent && resultCode == ResultCodeNewEvent){
-           Evento evento =  (Evento) data.getExtras().getSerializable("novoEvento");
-           evento.setId(++id);
-           this.adapterEvento.add(evento);
+        if (requestCode == RequestCodeNewEvent && resultCode == ResultCodeNewEvent) {
+            Evento evento = (Evento) data.getExtras().getSerializable("novoEvento");
+            evento.setId(++id);
+            this.adapterEvento.add(evento);
         } else if (requestCode == RequestCodeEventEdition && resultCode == ResultCodeNewEditedEvent) {
             Evento eventoEditado = (Evento) data.getExtras().getSerializable("eventoEditado");
             for (int i = 0; i < adapterEvento.getCount(); i++) {
