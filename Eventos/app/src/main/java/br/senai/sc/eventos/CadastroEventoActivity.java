@@ -17,6 +17,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
     private final int ResultCode_NewEvent = 10;
     private final int ResultCode_NewEditedEvent = 11;
+    private final int ResultCodeDeleteEvent = 20;
     private boolean edition = false;
     private int id = 0;
 
@@ -27,8 +28,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
         setTitle("Cadastro de Evento");
 
         carregarEvento();
-
-
     }
 
 
@@ -62,9 +61,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
             dlg.setNeutralButton("OK", null);
             dlg.show();
         }
-
         return camposInvalidos;
-
     }
 
 
@@ -129,6 +126,25 @@ public class CadastroEventoActivity extends AppCompatActivity {
             finish();
         }
 
+    }
+
+    public void onClickDelete(View v) {
+        EditText editTextNome = findViewById(R.id.editText_name);
+        EditText editTextDate = findViewById(R.id.editText_date);
+        EditText editTextLocation = findViewById(R.id.editText_location);
+        String dateText = editTextDate.getText().toString();
+        String name = editTextNome.getText().toString();
+        LocalDate date = dateText.isEmpty() ? null : LocalDate.parse(dateText);
+        String location = editTextLocation.getText().toString();
+
+        Intent intent = getIntent();
+        Evento evento = (Evento) intent.getExtras().get("eventoDeletado");
+
+        if (edition) {
+            intent.putExtra("eventoEdicao", evento);
+            setResult(ResultCodeDeleteEvent, intent);
+        }
+        finish();
     }
 
 

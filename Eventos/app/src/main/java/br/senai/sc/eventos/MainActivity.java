@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private final int ResultCodeNewEvent = 10;
     private final int RequestCodeEventEdition = 2;
     private final int ResultCodeNewEditedEvent = 11;
+    private final int ResultCodeDeleteEvent = 20;
+    private final int RequestCodeDeleteEvent = 30;
 
     private ListView listViewEventos;
     private ArrayAdapter<Evento> adapterEvento;
@@ -62,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
         startActivityForResult(intent, RequestCodeNewEvent);
-
     }
 
     @Override
@@ -73,15 +74,17 @@ public class MainActivity extends AppCompatActivity {
            this.adapterEvento.add(evento);
         } else if (requestCode == RequestCodeEventEdition && resultCode == ResultCodeNewEditedEvent) {
             Evento eventoEditado = (Evento) data.getExtras().getSerializable("eventoEditado");
-            for (int i = 0; i< adapterEvento.getCount(); i++){
+            for (int i = 0; i < adapterEvento.getCount(); i++) {
                 Evento evento = adapterEvento.getItem(i);
                 if (evento.getId() == eventoEditado.getId()) {
-
                     adapterEvento.remove(evento);
                     adapterEvento.insert(eventoEditado, i);
                     break;
                 }
             }
+        } else if (requestCode == RequestCodeDeleteEvent || resultCode == ResultCodeDeleteEvent) {
+            Evento eventoDeletado = (Evento) data.getExtras().getSerializable("eventoEdicao");
+            this.adapterEvento.remove(eventoDeletado);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

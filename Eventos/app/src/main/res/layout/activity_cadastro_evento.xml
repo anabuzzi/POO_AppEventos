@@ -66,6 +66,15 @@
             android:layout_weight="1"
             android:onClick="onClickSave"
             android:text="Salvar" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Excluir"
+            android:onClick="onClickDelete"
+            />
     </LinearLayout>
 
 </LinearLayout>
