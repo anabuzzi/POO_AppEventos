@@ -1,12 +1,16 @@
 package br.senai.sc.eventos;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+
 import java.time.LocalDate;
+
 import br.senai.sc.eventos.modelo.Evento;
 
 public class CadastroEventoActivity extends AppCompatActivity {
@@ -27,7 +31,50 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
     }
 
-    private void carregarEvento () {
+
+    private boolean validaCampos() {
+
+        boolean camposInvalidos = false;
+
+        EditText editTextNome = findViewById(R.id.editText_name);
+        EditText editTextDate = findViewById(R.id.editText_date);
+        EditText editTextLocation = findViewById(R.id.editText_location);
+        String dateText = editTextDate.getText().toString();
+        String name = editTextNome.getText().toString();
+        LocalDate date = dateText.isEmpty() ? null : LocalDate.parse(dateText);
+        String location = editTextLocation.getText().toString();
+
+        if (isEmptyCampo(name) ) {
+            editTextNome.requestFocus();
+            camposInvalidos = true;
+        } else if (date == null || isEmptyCampo(date.toString())){
+            editTextDate.requestFocus();
+            camposInvalidos = true;
+        } else if (isEmptyCampo(location)) {
+            editTextLocation.requestFocus();
+            camposInvalidos = true;
+        }
+
+        if (camposInvalidos) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setTitle("Aviso");
+            dlg.setMessage("Há campos obrigatórios não preenchidos. Favor verificar.");
+            dlg.setNeutralButton("OK", null);
+            dlg.show();
+        }
+
+        return camposInvalidos;
+
+    }
+
+
+    private boolean isEmptyCampo(String valor) {
+
+        return (TextUtils.isEmpty(valor) || valor.trim().isEmpty());
+    }
+
+
+    private void carregarEvento() {
 
         Intent intent = getIntent();
 
@@ -49,24 +96,23 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
     }
 
-    public void onClickBack (View v){
+    public void onClickBack(View v) {
         finish();
 
     }
 
-    public void onClickSave (View v) {
+    public void onClickSave(View v) {
 
         EditText editTextNome = findViewById(R.id.editText_name);
         EditText editTextDate = findViewById(R.id.editText_date);
         EditText editTextLocation = findViewById(R.id.editText_location);
-
+        String dateText = editTextDate.getText().toString();
         String name = editTextNome.getText().toString();
-        LocalDate date = LocalDate.parse(editTextDate.getText().toString());
+        LocalDate date = dateText.isEmpty() ? null : LocalDate.parse(dateText);
         String location = editTextLocation.getText().toString();
 
-
-        Evento evento = new Evento (id, name, date, location);
-        Intent intent = new Intent ();
+        Evento evento = new Evento(id, name, date, location);
+        Intent intent = new Intent();
 
         if (edition) {
             intent.putExtra("eventoEditado", evento);
@@ -77,7 +123,12 @@ public class CadastroEventoActivity extends AppCompatActivity {
             setResult(ResultCode_NewEvent, intent);
         }
 
-        finish();
+        boolean camposInvalidos = validaCampos();
+
+        if (!camposInvalidos) {
+            finish();
+        }
+
     }
 
 

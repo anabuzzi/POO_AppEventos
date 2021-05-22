@@ -27,7 +27,7 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public Evento(String name, LocalDate date, String location) {
+    public Evento (String name, LocalDate date, String location) {
         this.name = name;
         this.date = date;
         this.location = location;
