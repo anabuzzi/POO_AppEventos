@@ -6,25 +6,16 @@ import java.time.format.DateTimeFormatter;
 
 public class Evento implements Serializable {
 
-    private int ID;
+
     private String name;
     private LocalDate date;
     private String location;
 
     public Evento(String name, LocalDate date, String location) {
-//        this.ID = ID;
         this.name = name;
         this.date = date;
         this.location = location;
     }
-
-//    public int getID() {
-//        return ID;
-//    }
-//
-//    public void setID(int ID) {
-//        this.ID = ID;
-//    }
 
     public String getName() {
         return name;
