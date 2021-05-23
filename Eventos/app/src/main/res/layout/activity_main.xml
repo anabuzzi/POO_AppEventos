@@ -17,7 +17,7 @@
         android:id="@+id/btn_newEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onClickNewEvent"
+        android:onClick="onClickNovoEvento"
         android:text="Novo Evento" />
 
 </LinearLayout>

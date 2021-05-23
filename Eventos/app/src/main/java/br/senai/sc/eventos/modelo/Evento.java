@@ -7,16 +7,16 @@ import java.time.format.DateTimeFormatter;
 public class Evento implements Serializable {
 
     private int id;
-    private String name;
-    private LocalDate date;
-    private String location;
+    private String nome;
+    private LocalDate data;
+    private String local;
 
 
-    public Evento (int id, String name, LocalDate date, String location) {
+    public Evento (int id, String nome, LocalDate data, String local) {
         this.id = id;
-        this.name = name;
-        this.date = date;
-        this.location = location;
+        this.nome = nome;
+        this.data = data;
+        this.local = local;
     }
 
     public int getId() {
@@ -27,42 +27,41 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public Evento (String name, LocalDate date, String location) {
-        this.name = name;
-        this.date = date;
-        this.location = location;
+    public Evento (String name, LocalDate data, String local) {
+        this.nome = name;
+        this.data = data;
+        this.local = local;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getData() {
+        return data;
     }
 
     public void setData(String data) {
-
         String format = "dd/MM/yyyy";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        this.date = LocalDate.parse(data, formatter);
+        this.data = LocalDate.parse(data, formatter);
     }
 
-    public String getLocation() {
-        return location;
+    public String getLocal() {
+        return local;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocal(String local) {
+        this.local = local;
     }
 
     @Override
     public String toString() {
-        return name + " - " + date + " - " + location ;
+        return nome + " - " + data + " - " + local;
     }
 }
 
