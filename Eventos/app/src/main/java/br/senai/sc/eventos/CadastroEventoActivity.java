@@ -8,6 +8,7 @@ import android.view.View;
 
 import java.time.LocalDate;
 
+import br.senai.sc.eventos.database.EventoDAO;
 import br.senai.sc.eventos.modelo.Evento;
 
 import static br.senai.sc.eventos.CodesEnum.RESULT_CODE_NEW_EDITED_EVENT;
@@ -62,16 +63,10 @@ public class CadastroEventoActivity extends AppCompatActivity {
         String location = editTextParams.getEditTextLocation().getText().toString().trim();
 
         Evento evento = new Evento(eventoId, name, date, location);
-        Intent intent = new Intent();
-
-        String tipoEvento = edition ? "eventoEditado" : "novoEvento";
-        int resultCode = edition ? RESULT_CODE_NEW_EDITED_EVENT.getValue() : RESULT_CODE_NEW_EVENT.getValue();
-
+        EventoDAO eventoDAO = new EventoDAO(getBaseContext());
+        boolean salvou = eventoDAO.salvar(evento);
         EventoValidator validator = new EventoValidator(evento, new android.app.AlertDialog.Builder(this), editTextParams);
-        if (validator.isEventoValido()) {
-            intent.putExtra(tipoEvento, evento);
-            setResult(RESULT_CODE_NEW_EDITED_EVENT.getValue(), intent);
-            setResult(resultCode, intent);
+        if (validator.isEventoValido() && salvou) {
             finish();
         } else {
             validator.apresentaDialogCamposInvalidos();
