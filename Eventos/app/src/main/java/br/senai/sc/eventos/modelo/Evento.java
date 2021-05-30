@@ -41,8 +41,10 @@ public class Evento implements Serializable {
         this.nome = nome;
     }
 
-    public LocalDate getData() {
-        return data;
+    public String getData() {
+        String format = "dd/MM/yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        return data.format(formatter);
     }
 
     public void setData(String data) {

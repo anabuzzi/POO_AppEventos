@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 Evento eventoClick = adapterEvento.getItem(position);
                 Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
                 intent.putExtra("eventoEdicao", eventoClick);
-                startActivityForResult(intent, CodesEnum.REQUEST_CODE_EVENT_EDITION.getValue());
+                startActivity(intent);
             }
         });
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickNovoEvento(View v) {
         Intent intent = new Intent(MainActivity.this, CadastroEventoActivity.class);
-        startActivityForResult(intent, CodesEnum.REQUEST_CODE_NEW_EVENT.getValue());
+        startActivity(intent);
     }
 
     private void removeEvento(Evento evento) {

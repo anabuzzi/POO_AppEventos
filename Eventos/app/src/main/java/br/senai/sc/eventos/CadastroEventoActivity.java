@@ -11,9 +11,6 @@ import java.time.LocalDate;
 import br.senai.sc.eventos.database.EventoDAO;
 import br.senai.sc.eventos.modelo.Evento;
 
-import static br.senai.sc.eventos.CodesEnum.RESULT_CODE_NEW_EDITED_EVENT;
-import static br.senai.sc.eventos.CodesEnum.RESULT_CODE_NEW_EVENT;
-
 public class CadastroEventoActivity extends AppCompatActivity {
 
     public static final String ACTIVITY_TITLE = "Cadastro de Evento";

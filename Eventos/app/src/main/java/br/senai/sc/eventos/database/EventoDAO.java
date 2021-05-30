@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class EventoDAO {
         ContentValues contentValues = new ContentValues();
         contentValues.put(EventoEntity.COLUM_NAME_NOME, evento.getNome());
         contentValues.put(EventoEntity.COLUM_NAME_LOCAL, evento.getLocal());
-        contentValues.put(String.valueOf(evento.getData()), EventoEntity.COLUM_NAME_DATA);
+        contentValues.put(EventoEntity.COLUM_NAME_DATA, evento.getData());
         if (evento.getId() > 0) {
             return dbGateway.getDatabase().update(EventoEntity.TABLE_NAME,
                     contentValues,
