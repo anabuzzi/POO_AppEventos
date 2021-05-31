@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import br.senai.sc.eventos.database.EventoDAO;
 import br.senai.sc.eventos.modelo.Evento;
@@ -54,9 +55,12 @@ public class CadastroEventoActivity extends AppCompatActivity {
     public void onClickSave(View v) {
         EditTextParams editTextParams = new EditTextParams(findViewById(R.id.editText_name), findViewById(R.id.editText_date), findViewById(R.id.editText_location));
 
+        String format = "dd-MM-yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+
         String dateText = editTextParams.getEditTextDate().getText().toString().trim();
         String name = editTextParams.getEditTextNome().getText().toString().trim();
-        LocalDate date = dateText.isEmpty() ? null : LocalDate.parse(dateText);
+        LocalDate date = dateText.isEmpty() ? null : LocalDate.parse(dateText, formatter);
         String location = editTextParams.getEditTextLocation().getText().toString().trim();
 
         Evento evento = new Evento(eventoId, name, date, location);

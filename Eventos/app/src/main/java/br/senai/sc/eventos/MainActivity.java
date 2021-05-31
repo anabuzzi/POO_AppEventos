@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     private void onLongClickListenerView() {
@@ -75,7 +73,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void removeEvento(Evento evento) {
-        this.adapterEvento.remove(evento);
-    }
 }
