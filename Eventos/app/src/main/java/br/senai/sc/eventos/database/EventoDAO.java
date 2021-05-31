@@ -52,4 +52,8 @@ public class EventoDAO {
         cursor.close();
         return eventos;
     }
+
+    public int excluir(Evento evento) {
+        return dbGateway.getDatabase().delete(EventoEntity.TABLE_NAME, EventoEntity._ID + "=?", new String[]{String.valueOf(evento.getId())});
+    }
 }

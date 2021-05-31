@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle(ACTIVITY_TITLE);
         listViewEventos = findViewById(R.id.listView_eventos);
         defineOnClickListenerView();
+        onLongClickListenerView();
 
     }
 
@@ -52,12 +53,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void onLongClickListenerView() {
         listViewEventos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Evento eventoClick = adapterEvento.getItem(position);
-                adapterEvento.remove(eventoClick);
+                EventoDAO eventoDAO = new EventoDAO(getBaseContext());
+                eventoDAO.excluir(eventoClick);
                 Toast.makeText(MainActivity.this, "Evento excluído com sucesso", Toast.LENGTH_LONG).show();
+                eventoDAO.listar();
                 return false;
             }
         });
