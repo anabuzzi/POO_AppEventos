@@ -27,12 +27,6 @@ public class Evento implements Serializable {
         this.id = id;
     }
 
-    public Evento (String name, LocalDate data, String local) {
-        this.nome = name;
-        this.data = data;
-        this.local = local;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -42,7 +36,7 @@ public class Evento implements Serializable {
     }
 
     public String getData() {
-        String format = "dd/MM/yyyy";
+        String format = "dd-MM-yyyy";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return data.format(formatter);
     }

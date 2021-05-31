@@ -36,12 +36,16 @@ public class EventoDAO {
     }
 
     public List<Evento> listar() {
+        String format = "dd-MM-yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+
         List<Evento> eventos = new ArrayList<>();
         Cursor cursor = dbGateway.getDatabase().rawQuery(SQL_LISTAR_TODOS, null);
+
         while (cursor.moveToNext()) {
             int id = cursor.getInt(cursor.getColumnIndex(EventoEntity._ID));
             String nome = cursor.getString(cursor.getColumnIndex(EventoEntity.COLUM_NAME_NOME));
-            LocalDate data = LocalDate.ofEpochDay(cursor.getInt(cursor.getColumnIndex(String.valueOf(EventoEntity.COLUM_NAME_DATA))));
+            LocalDate data = LocalDate.parse(cursor.getString((cursor.getColumnIndex(EventoEntity.COLUM_NAME_DATA))),formatter);
             String local = cursor.getString(cursor.getColumnIndex(EventoEntity.COLUM_NAME_LOCAL));
             eventos.add(new Evento(id, nome, data, local));
         }
