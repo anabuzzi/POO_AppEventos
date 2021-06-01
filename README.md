@@ -5,7 +5,7 @@
 Orientações:
 
 
-- Data no formato YYYY-MM-DD
+- Data no formato DD/MM/YYYY
 - Para deletar eventos da lista, pressione o mouse (long click) no evento desejado.
 
 
