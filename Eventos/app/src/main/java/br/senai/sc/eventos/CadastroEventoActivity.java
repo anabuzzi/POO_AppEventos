@@ -15,7 +15,6 @@ import br.senai.sc.eventos.modelo.Evento;
 public class CadastroEventoActivity extends AppCompatActivity {
 
     public static final String ACTIVITY_TITLE = "Cadastro de Evento";
-    private boolean edition = false;
     private int eventoId = 0;
 
     @Override
@@ -38,7 +37,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
                     findViewById(R.id.editText_location));
             editTextParams.setEditTextsFromEvento(evento);
 
-            this.edition = true;
             this.eventoId = evento.getId();
         }
     }
@@ -55,12 +53,8 @@ public class CadastroEventoActivity extends AppCompatActivity {
     public void onClickSave(View v) {
         EditTextParams editTextParams = new EditTextParams(findViewById(R.id.editText_name), findViewById(R.id.editText_date), findViewById(R.id.editText_location));
 
-        String format = "dd-MM-yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-
-        String dateText = editTextParams.getEditTextDate().getText().toString().trim();
         String name = editTextParams.getEditTextNome().getText().toString().trim();
-        LocalDate date = dateText.isEmpty() ? null : LocalDate.parse(dateText, formatter);
+        String date = editTextParams.getEditTextDate().getText().toString().trim();
         String location = editTextParams.getEditTextLocation().getText().toString().trim();
 
         Evento evento = new Evento(eventoId, name, date, location);

@@ -1,18 +1,17 @@
 package br.senai.sc.eventos.modelo;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 
 public class Evento implements Serializable {
 
     private int id;
     private String nome;
-    private LocalDate data;
+    private String data;
     private String local;
 
 
-    public Evento (int id, String nome, LocalDate data, String local) {
+    public Evento (int id, String nome, String data, String local) {
         this.id = id;
         this.nome = nome;
         this.data = data;
@@ -36,15 +35,11 @@ public class Evento implements Serializable {
     }
 
     public String getData() {
-        String format = "dd-MM-yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        return data.format(formatter);
+        return data;
     }
 
     public void setData(String data) {
-        String format = "dd/MM/yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        this.data = LocalDate.parse(data, formatter);
+        this.data = data;
     }
 
     public String getLocal() {

@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 EventoDAO eventoDAO = new EventoDAO(getBaseContext());
                 eventoDAO.excluir(eventoClick);
                 Toast.makeText(MainActivity.this, "Evento excluído com sucesso", Toast.LENGTH_LONG).show();
-                eventoDAO.listar();
                 return false;
             }
         });

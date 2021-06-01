@@ -45,7 +45,7 @@ public class EventoValidator {
     }
 
     public boolean isDataValida() {
-        return this.evento.getData() != null;
+        return this.evento.getData() != null && evento.getData() != "";
     }
 
     public boolean isDataInvalida() {
