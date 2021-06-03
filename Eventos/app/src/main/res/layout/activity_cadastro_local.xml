@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CadastroLocalActivity">
+
+    <TextView
+        android:id="@+id/textView_nameLocal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome do Local" />
+
+    <EditText
+        android:id="@+id/editText_nameLocal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nome do Local"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView_nameCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Digite o nome da Cidade" />
+
+    <EditText
+        android:id="@+id/editTextT_nameCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Cidade"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView_nameNeighborhood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Digite o Bairro" />
+
+    <EditText
+        android:id="@+id/editText_nameNeighborhood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Bairro"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/textView_maxCapacity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Digite a capacidade máxima de pessoas" />
+
+    <EditText
+        android:id="@+id/editText_maxCapacity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Capacidade máxima de pessoas"
+        android:inputType="number" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Voltar" />
+
+        <Button
+            android:id="@+id/btnSaveVenue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Salvar" />
+    </LinearLayout>
+
+</LinearLayout>
