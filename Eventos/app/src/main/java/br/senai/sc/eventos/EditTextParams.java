@@ -44,3 +44,4 @@ public class EditTextParams {
         this.editTextLocation.setText(evento.getLocal());
     }
 }
+
