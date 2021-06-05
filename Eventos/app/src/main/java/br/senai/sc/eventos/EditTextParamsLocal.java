@@ -54,6 +54,6 @@ public class EditTextParamsLocal {
         this.editTextNomeLocal.setText(local.getLocal());
         this.editTextNomeCidade.setText(local.getCidade());
         this.editTextNomeBairro.setText(local.getBairro());
-        this.editTextCapacidadeMaxima.setText(local.getCapacidadeMaxima());
+        this.editTextCapacidadeMaxima.setText(String.valueOf(local.getCapacidadeMaxima()));
     }
 }

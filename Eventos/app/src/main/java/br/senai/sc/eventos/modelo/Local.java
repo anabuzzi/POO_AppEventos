@@ -60,6 +60,6 @@ public class Local implements Serializable {
 
     @Override
     public String toString() {
-        return local + cidade + bairro + capacidadeMaxima;
+        return local + " - " + cidade + " - " + bairro + " - " + capacidadeMaxima;
     }
 }
