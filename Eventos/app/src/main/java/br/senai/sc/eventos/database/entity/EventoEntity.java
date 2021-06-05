@@ -10,4 +10,5 @@ public final class EventoEntity implements BaseColumns {
     public static final String COLUM_NAME_NOME = "nome";
     public static final String COLUM_NAME_DATA = "data";
     public static final String COLUM_NAME_LOCAL = "local";
+    public static final String COLUM_NAME_ID_LOCAL = "idlocal";
 }

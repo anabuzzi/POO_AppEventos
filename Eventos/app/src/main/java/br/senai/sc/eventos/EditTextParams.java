@@ -41,7 +41,7 @@ public class EditTextParams {
     public void setEditTextsFromEvento(Evento evento) {
         this.editTextNome.setText(evento.getNome());
         this.editTextDate.setText(String.valueOf(evento.getData()));
-        this.editTextLocation.setText(evento.getLocal());
+        this.editTextLocation.setText(evento.getLocal().toString());
     }
 }
 

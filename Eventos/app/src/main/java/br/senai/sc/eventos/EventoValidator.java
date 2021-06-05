@@ -53,7 +53,7 @@ public class EventoValidator {
     }
 
     public boolean isLocalValido() {
-        return !TextUtils.isEmpty(this.evento.getLocal());
+        return !TextUtils.isEmpty(this.evento.getLocal().toString());
     }
 
     public boolean isLocalInvalido() {
