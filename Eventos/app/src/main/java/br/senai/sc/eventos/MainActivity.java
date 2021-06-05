@@ -72,4 +72,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onClickLocais(View v) {
+        Intent intent = new Intent(MainActivity.this, ListarLocaisActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
