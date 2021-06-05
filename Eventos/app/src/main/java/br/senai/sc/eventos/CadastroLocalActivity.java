@@ -36,7 +36,6 @@ public class CadastroLocalActivity extends AppCompatActivity {
                     findViewById(R.id.editText_nameNeighborhood),
                     findViewById(R.id.editText_maxCapacity));
             editTextParamsLocal.setEditTextsFromLocal(local);
-
             this.localId = local.getId();
         }
     }

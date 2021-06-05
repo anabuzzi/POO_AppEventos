@@ -8,7 +8,7 @@
     tools:context=".ListarLocaisActivity">
 
     <ListView
-        android:id="@+id/listView_neighborhoods"
+        android:id="@+id/listView_venues"
         android:layout_width="match_parent"
         android:layout_height="400dp" >
 
@@ -18,11 +18,13 @@
         android:id="@+id/btnNewVenue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="onClickNovoLocal"
         android:text="Novo Local" />
 
     <Button
         android:id="@+id/btnBackEvents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="onClickEventos"
         android:text="Eventos" />
 </LinearLayout>
