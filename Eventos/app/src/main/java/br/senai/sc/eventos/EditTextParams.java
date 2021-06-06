@@ -9,10 +9,9 @@ public class EditTextParams {
     EditText editTextDate;
     EditText editTextLocation;
 
-    public EditTextParams(EditText editTextNome, EditText editTextDate, EditText editTextLocation) {
+    public EditTextParams(EditText editTextNome, EditText editTextDate) {
         this.editTextNome = editTextNome;
         this.editTextDate = editTextDate;
-        this.editTextLocation = editTextLocation;
     }
 
     public EditText getEditTextNome() {
@@ -41,7 +40,7 @@ public class EditTextParams {
     public void setEditTextsFromEvento(Evento evento) {
         this.editTextNome.setText(evento.getNome());
         this.editTextDate.setText(String.valueOf(evento.getData()));
-        this.editTextLocation.setText(evento.getLocal().toString());
+        this.editTextLocation.setText(evento.getLocal().getLocal());
     }
 }
 

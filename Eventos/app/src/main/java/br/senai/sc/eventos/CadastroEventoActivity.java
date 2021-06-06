@@ -39,8 +39,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
             Evento evento = (Evento) intent.getExtras().get(tipoEventoEdicao);
             EditTextParams editTextParams = new EditTextParams(
                     findViewById(R.id.editText_name),
-                    findViewById(R.id.editText_date),
-                    findViewById(R.id.editText_location));
+                    findViewById(R.id.editText_date));
             editTextParams.setEditTextsFromEvento(evento);
             int posicaoLocal = obterPosicaoLocal(evento.getLocal());
             spinnerLocais.setSelection(posicaoLocal);
@@ -75,7 +74,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
     }
 
     public void onClickSave(View v) {
-        EditTextParams editTextParams = new EditTextParams(findViewById(R.id.editText_name), findViewById(R.id.editText_date), findViewById(R.id.editText_location));
+        EditTextParams editTextParams = new EditTextParams(findViewById(R.id.editText_name), findViewById(R.id.editText_date));
 
         String name = editTextParams.getEditTextNome().getText().toString().trim();
         String date = editTextParams.getEditTextDate().getText().toString().trim();
@@ -85,7 +84,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
         EventoDAO eventoDAO = new EventoDAO(getBaseContext());
         boolean salvou = eventoDAO.salvar(evento);
         EventoValidator validator = new EventoValidator(evento, new android.app.AlertDialog.Builder(this), editTextParams);
-        if (validator.isEventoValido() && salvou) {
+        if (validator.isEventoValido() && local != null && salvou) {
             finish();
         } else {
             validator.apresentaDialogCamposInvalidos();

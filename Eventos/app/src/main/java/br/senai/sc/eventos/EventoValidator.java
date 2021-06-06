@@ -2,6 +2,7 @@ package br.senai.sc.eventos;
 
 import android.app.AlertDialog;
 import android.text.TextUtils;
+import android.widget.Spinner;
 
 import br.senai.sc.eventos.modelo.Evento;
 
@@ -30,10 +31,6 @@ public class EventoValidator {
             editTextParams.getEditTextDate().requestFocus();
             this.isEventoValido = false;
         }
-        if (isLocalInvalido()) {
-            editTextParams.getEditTextLocation().requestFocus();
-            this.isEventoValido = false;
-        }
     }
 
     public boolean isNomeValido() {
@@ -50,14 +47,6 @@ public class EventoValidator {
 
     public boolean isDataInvalida() {
         return !isDataValida();
-    }
-
-    public boolean isLocalValido() {
-        return !TextUtils.isEmpty(this.evento.getLocal().toString());
-    }
-
-    public boolean isLocalInvalido() {
-        return !isLocalValido();
     }
 
     public void apresentaDialogCamposInvalidos() {

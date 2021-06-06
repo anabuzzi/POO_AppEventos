@@ -34,19 +34,6 @@
         android:inputType="date" />
 
     <TextView
-        android:id="@+id/textView_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Local do Evento" />
-
-    <EditText
-        android:id="@+id/editText_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <TextView
         android:id="@+id/textView_venue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
