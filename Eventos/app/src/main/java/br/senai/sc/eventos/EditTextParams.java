@@ -7,7 +7,6 @@ import br.senai.sc.eventos.modelo.Evento;
 public class EditTextParams {
     EditText editTextNome;
     EditText editTextDate;
-    EditText editTextLocation;
 
     public EditTextParams(EditText editTextNome, EditText editTextDate) {
         this.editTextNome = editTextNome;
@@ -30,17 +29,12 @@ public class EditTextParams {
         this.editTextDate = editTextDate;
     }
 
-    public EditText getEditTextLocation() {
-        return editTextLocation;
-    }
 
     public void setEditTextLocation(EditText editTextLocation) {
-        this.editTextLocation = editTextLocation;
     }
     public void setEditTextsFromEvento(Evento evento) {
         this.editTextNome.setText(evento.getNome());
         this.editTextDate.setText(String.valueOf(evento.getData()));
-        this.editTextLocation.setText(evento.getLocal().getLocal());
     }
 }
 

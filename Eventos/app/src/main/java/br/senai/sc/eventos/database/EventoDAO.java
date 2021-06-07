@@ -15,7 +15,7 @@ import br.senai.sc.eventos.modelo.Evento;
 import br.senai.sc.eventos.modelo.Local;
 
 public class EventoDAO {
-    private final String SQL_LISTAR_TODOS = "SELECT evento._id, nome, data, idlocal FROM " +
+    private final String SQL_LISTAR_TODOS = "SELECT evento._id, nome, data, nomeLocal, nomeCidade, nomeBairro, capacidadeMaxima, idlocal FROM " +
             EventoEntity.TABLE_NAME +
             " INNER JOIN " + LocalEntity.TABLE_NAME + " ON " + EventoEntity.COLUM_NAME_ID_LOCAL +
             " = " + LocalEntity.TABLE_NAME + "." + LocalEntity._ID;
