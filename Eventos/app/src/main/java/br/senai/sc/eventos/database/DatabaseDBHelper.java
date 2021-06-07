@@ -12,7 +12,7 @@ import br.senai.sc.eventos.database.contract.LocalContract;
 public class DatabaseDBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "db.evento";
-    public static final int DATABASE_VERSION = 17;
+    public static final int DATABASE_VERSION = 23;
 
     public DatabaseDBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -20,8 +20,8 @@ public class DatabaseDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(EventoContract.criarTabela());
         db.execSQL(LocalContract.criarTabela());
+        db.execSQL(EventoContract.criarTabela());
     }
 
     @Override

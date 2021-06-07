@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import br.senai.sc.eventos.database.EventoDAO;
 import br.senai.sc.eventos.database.LocalDAO;
+import br.senai.sc.eventos.modelo.Evento;
 import br.senai.sc.eventos.modelo.Local;
 
 public class ListarLocaisActivity extends AppCompatActivity {
@@ -22,6 +26,7 @@ public class ListarLocaisActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listar_locais);
         listViewLocais = findViewById(R.id.listView_venues);
         definirOnClickListenerView();
+        onLongClickListenerView();
     }
 
     @Override
@@ -39,6 +44,19 @@ public class ListarLocaisActivity extends AppCompatActivity {
             Intent intent = new Intent(ListarLocaisActivity.this, CadastroLocalActivity.class);
             intent.putExtra("localEdicao", localClicado);
             startActivity(intent);
+        });
+    }
+
+    private void onLongClickListenerView() {
+        listViewLocais.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Local localClick = adapterLocais.getItem(position);
+                LocalDAO localDAO = new LocalDAO(getBaseContext());
+                localDAO.excluir(localClick);
+                Toast.makeText(ListarLocaisActivity.this, "Local excluído com sucesso", Toast.LENGTH_LONG).show();
+                return false;
+            }
         });
     }
 

@@ -7,7 +7,9 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.senai.sc.eventos.database.entity.EventoEntity;
 import br.senai.sc.eventos.database.entity.LocalEntity;
+import br.senai.sc.eventos.modelo.Evento;
 import br.senai.sc.eventos.modelo.Local;
 
 public class LocalDAO {
@@ -45,5 +47,9 @@ public class LocalDAO {
             locais.add(new Local(id, local, cidade, bairro, capacidadeMaxima));
         }
         return locais;
+    }
+
+    public int excluir(Local local) {
+        return dbGateway.getDatabase().delete(EventoEntity.TABLE_NAME, EventoEntity._ID + "=?", new String[]{String.valueOf(local.getId())});
     }
 }
