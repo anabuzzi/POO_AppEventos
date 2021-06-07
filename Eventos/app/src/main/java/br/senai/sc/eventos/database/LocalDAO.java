@@ -50,6 +50,6 @@ public class LocalDAO {
     }
 
     public int excluir(Local local) {
-        return dbGateway.getDatabase().delete(EventoEntity.TABLE_NAME, EventoEntity._ID + "=?", new String[]{String.valueOf(local.getId())});
+        return dbGateway.getDatabase().delete(LocalEntity.TABLE_NAME, LocalEntity._ID + "=?", new String[]{String.valueOf(local.getId())});
     }
 }
